@@ -1,0 +1,220 @@
+/* Reset and base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    background: #f0f4f8;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px 15px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.container {
+    background: white;
+    width: 100%;
+    max-width: 430px;
+    padding: 30px 30px 40px;
+    border-radius: 20px;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.1),
+        inset 0 0 40px rgba(255, 255, 255, 0.8);
+    position: relative;
+    z-index: 10;
+    text-align: center;
+}
+
+/* Title */
+h1 {
+    font-weight: 700;
+    font-size: 32px;
+    margin-bottom: 25px;
+    color: #007aff;
+    user-select: none;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+input[type="text"] {
+    flex-grow: 1;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 50px;
+    box-shadow:
+        inset 0 2px 5px rgba(0, 0, 0, 0.1),
+        0 2px 6px rgba(0, 0, 0, 0.05);
+    outline: none;
+    transition: box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus {
+    box-shadow:
+        inset 0 2px 8px rgba(0, 122, 255, 0.7),
+        0 2px 8px rgba(0, 122, 255, 0.3);
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 50px;
+    background: #007aff;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.5);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+    background: #005fcc;
+    box-shadow: 0 6px 16px rgba(0, 95, 204, 0.6);
+}
+
+/* Recent Searches Glossy Buttons */
+.recent {
+    margin-top: 30px;
+}
+
+.recent h3 {
+    color: #444;
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    user-select: none;
+}
+
+.recent ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.recent li a {
+    display: inline-block;
+    padding: 10px 22px;
+    background: linear-gradient(145deg, #e3e3e3, #ffffff);
+    border-radius: 50px;
+    box-shadow:
+        inset 0 2px 3px rgba(255, 255, 255, 0.7),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.1),
+        0 4px 8px rgba(0, 0, 0, 0.08);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    color: #007aff;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.recent li a:hover {
+    background: linear-gradient(145deg, #d0e4ff, #ffffff);
+    color: #005fcc;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 122, 255, 0.2);
+}
+
+/* Weather Info Box */
+.weather {
+    margin-top: 35px;
+    background: linear-gradient(135deg, #007aff 0%, #00a1ff 100%);
+    color: white;
+    padding: 25px 30px;
+    border-radius: 30px;
+    box-shadow:
+        0 15px 30px rgba(0, 122, 255, 0.4);
+    user-select: none;
+}
+
+.weather h2 {
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 28px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+.weather p {
+    font-size: 18px;
+    margin-bottom: 12px;
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+/* Animation Layer: covers whole screen, behind container */
+#animation-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+    background-repeat: repeat;
+    background-position: center center;
+    background-size: cover;
+    transition: background 0.5s ease;
+}
+
+/* Weather backgrounds with transparent overlays */
+/* You need to add these gif files to your static folder */
+
+body.rain #animation-layer {
+    background-image: url('/static/rain.gif');
+}
+
+body.snow #animation-layer {
+    background-image: url('/static/snow.gif');
+}
+
+body.sunny #animation-layer {
+    background-image: url('/static/sunny.gif');
+}
+
+body.night #animation-layer {
+    background-image: url('/static/stars.gif');
+}
+
+/* For fallback cloudy or no special weather */
+body.cloudy #animation-layer {
+    background: linear-gradient(to bottom, #d0d4db, #aeb6c0);
+}
+
+/* Responsive for smaller devices */
+@media (max-width: 480px) {
+    .container {
+        max-width: 90vw;
+        padding: 20px 20px 30px;
+    }
+
+    form {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    input[type="text"], button {
+        width: 100%;
+    }
+
+    .recent ul {
+        justify-content: flex-start;
+    }
+}

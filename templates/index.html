@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="sunny">
+
+
+    <div class="container">
+
+        <h1>☁️ Weather Forecast</h1>
+
+        <!-- Weather Search Form -->
+        <form method="POST">
+            <input type="text" name="city" placeholder="Enter city..." required>
+            <button type="submit">Get Weather</button>
+        </form>
+
+        <!-- Glossy iOS-style Recent Search Buttons -->
+        {% if recent %}
+        <div class="recent">
+            <h3>Recent Searches</h3>
+            <ul>
+                {% for city in recent %}
+                    <li><a href="{{ url_for('index') }}?city={{ city }}">{{ city }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <!-- Dynamic Weather Animation Overlay -->
+        <div id="animation-layer"></div>
+
+        <!-- Weather Data Display -->
+        {% if weather %}
+        <div class="weather">
+            <h2>{{ weather.city }}</h2>
+            <p>🌡️ Temperature: {{ weather.temperature }} °C</p>
+            <p>🌤️ Condition: {{ weather.condition }}</p>
+            <p>💧 Humidity: {{ weather.humidity }}%</p>
+            <p>💨 Wind Speed: {{ weather.wind }} m/s</p>
+        </div>
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
